@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Home, ChevronRight, Delete } from 'lucide-react';
+import { Home, ChevronRight, Delete, Calculator } from 'lucide-react';
 
 const BasicCalculator: React.FC = () => {
   const [display, setDisplay] = useState('0');
@@ -120,7 +120,55 @@ const BasicCalculator: React.FC = () => {
         <span className="text-gray-900 font-medium">Basic Calculator</span>
       </nav>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        {/* Related Calculators Sidebar */}
+        <div className="lg:col-span-1">
+          <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+              <Calculator className="w-5 h-5 mr-2 text-blue-600" />
+              Try Our Other Calculators
+            </h2>
+            <div className="space-y-2">
+              <Link
+                to="/scientific-calculator"
+                className="block p-3 rounded-lg hover:bg-blue-50 transition-colors text-gray-700 hover:text-blue-600 text-sm font-medium"
+              >
+                Scientific Calculator
+              </Link>
+              <Link
+                to="/fraction-calculator"
+                className="block p-3 rounded-lg hover:bg-blue-50 transition-colors text-gray-700 hover:text-blue-600 text-sm font-medium"
+              >
+                Fraction Calculator
+              </Link>
+              <Link
+                to="/percentage-calculator"
+                className="block p-3 rounded-lg hover:bg-blue-50 transition-colors text-gray-700 hover:text-blue-600 text-sm font-medium"
+              >
+                Percentage Calculator
+              </Link>
+              <Link
+                to="/average-calculator"
+                className="block p-3 rounded-lg hover:bg-blue-50 transition-colors text-gray-700 hover:text-blue-600 text-sm font-medium"
+              >
+                Average Calculator
+              </Link>
+              <Link
+                to="/ratio-calculator"
+                className="block p-3 rounded-lg hover:bg-blue-50 transition-colors text-gray-700 hover:text-blue-600 text-sm font-medium"
+              >
+                Ratio Calculator
+              </Link>
+              <Link
+                to="/proportion-calculator"
+                className="block p-3 rounded-lg hover:bg-blue-50 transition-colors text-gray-700 hover:text-blue-600 text-sm font-medium"
+              >
+                Proportion Calculator
+              </Link>
+            </div>
+          </div>
+        </div>
+
         {/* Calculator */}
         <div className="lg:col-span-2">
           <div className="bg-white rounded-2xl shadow-lg p-8">
