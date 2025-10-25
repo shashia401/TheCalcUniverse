@@ -121,11 +121,9 @@ const BasicCalculator: React.FC = () => {
             
             <div className="bg-gray-900 rounded-2xl p-6 mb-6">
               <div className="text-right">
-                {previousValue && operation && (
-                  <div className="text-lg font-mono text-gray-400 mb-2">
-                    {previousValue} {operation}
-                  </div>
-                )}
+                <div className="text-lg font-mono text-gray-400 mb-2 h-7">
+                  {previousValue && operation ? `${previousValue} ${operation}` : '\u00A0'}
+                </div>
                 <div className="text-4xl font-mono text-white break-all">
                   {display}
                 </div>
