@@ -53,6 +53,7 @@ const BasicCalculator: React.FC = () => {
 
     setWaitingForOperand(true);
     setOperation(nextOperation);
+    setShowExpression(null);
   };
 
   const calculate = (firstValue: number, secondValue: number, operation: string): number => {
