@@ -172,8 +172,6 @@ const BasicCalculator: React.FC = () => {
         {/* Calculator */}
         <div className="lg:col-span-2">
           <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-6">Basic Calculator</h1>
-            
             <div className="bg-gray-900 rounded-2xl p-6 mb-6">
               <div className="text-right">
                 <div className="text-lg font-mono text-gray-400 mb-2 h-7">
@@ -299,13 +297,9 @@ const BasicCalculator: React.FC = () => {
                 =
               </Button>
             </div>
-          </div>
-        </div>
 
-        {/* Information Panel */}
-        <div className="space-y-6">
-          <div className="bg-white rounded-2xl shadow-lg p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">About Basic Calculator</h2>
+            <div className="mt-8 pt-8 border-t border-gray-200">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">About Basic Calculator</h2>
             <p className="text-gray-600 leading-relaxed mb-4">
               A free online basic calculator for quick and easy arithmetic operations. Perform addition, subtraction,
               multiplication, and division with our simple calculator interface. Perfect for students, professionals,
@@ -348,9 +342,13 @@ const BasicCalculator: React.FC = () => {
               provides instant, accurate results. No ads interrupting your calculations, just a clean,
               easy-to-use interface.
             </p>
+            </div>
           </div>
+        </div>
 
-          <div className="bg-blue-50 rounded-2xl p-6">
+        {/* Information Panel */}
+        <div className="space-y-6">
+          <div className="bg-blue-50 rounded-2xl shadow-lg p-6">
             <h3 className="text-lg font-semibold text-blue-900 mb-3">Need More Functions?</h3>
             <p className="text-blue-800 text-sm leading-relaxed">
               For advanced calculations including scientific functions, trigonometry, logarithms,
