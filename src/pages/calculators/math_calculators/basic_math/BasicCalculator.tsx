@@ -7,6 +7,7 @@ const BasicCalculator: React.FC = () => {
   const [previousValue, setPreviousValue] = useState<string | null>(null);
   const [operation, setOperation] = useState<string | null>(null);
   const [waitingForOperand, setWaitingForOperand] = useState(false);
+  const [showExpression, setShowExpression] = useState<string | null>(null);
 
   const inputNumber = (num: string) => {
     if (waitingForOperand) {
@@ -14,6 +15,9 @@ const BasicCalculator: React.FC = () => {
       setWaitingForOperand(false);
     } else {
       setDisplay(display === '0' ? num : display + num);
+    }
+    if (showExpression) {
+      setShowExpression(null);
     }
   };
 
@@ -31,6 +35,7 @@ const BasicCalculator: React.FC = () => {
     setPreviousValue(null);
     setOperation(null);
     setWaitingForOperand(false);
+    setShowExpression(null);
   };
 
   const performOperation = (nextOperation: string) => {
@@ -73,7 +78,8 @@ const BasicCalculator: React.FC = () => {
         const inputValue = parseFloat(display);
         const currentValue = parseFloat(previousValue);
         const newValue = calculate(currentValue, inputValue, operation);
-        
+
+        setShowExpression(`${previousValue} ${operation} ${display}`);
         setDisplay(String(newValue));
         setPreviousValue(null);
         setOperation(null);
@@ -122,7 +128,7 @@ const BasicCalculator: React.FC = () => {
             <div className="bg-gray-900 rounded-2xl p-6 mb-6">
               <div className="text-right">
                 <div className="text-lg font-mono text-gray-400 mb-2 h-7">
-                  {previousValue && operation ? `${previousValue} ${operation}` : '\u00A0'}
+                  {showExpression || (previousValue && operation ? `${previousValue} ${operation}` : '\u00A0')}
                 </div>
                 <div className="text-4xl font-mono text-white break-all">
                   {display}
