@@ -121,6 +121,11 @@ const BasicCalculator: React.FC = () => {
             
             <div className="bg-gray-900 rounded-2xl p-6 mb-6">
               <div className="text-right">
+                {previousValue && operation && (
+                  <div className="text-lg font-mono text-gray-400 mb-2">
+                    {previousValue} {operation}
+                  </div>
+                )}
                 <div className="text-4xl font-mono text-white break-all">
                   {display}
                 </div>
@@ -249,32 +254,56 @@ const BasicCalculator: React.FC = () => {
           <div className="bg-white rounded-2xl shadow-lg p-6">
             <h2 className="text-xl font-bold text-gray-900 mb-4">About Basic Calculator</h2>
             <p className="text-gray-600 leading-relaxed mb-4">
-              This basic calculator performs simple arithmetic operations including addition, subtraction, 
-              multiplication, and division. Perfect for everyday calculations.
+              A free online basic calculator for quick and easy arithmetic operations. Perform addition, subtraction,
+              multiplication, and division with our simple calculator interface. Perfect for students, professionals,
+              and anyone needing fast calculations.
             </p>
-            <div className="space-y-2 text-sm">
-              <div className="flex justify-between">
-                <span className="text-gray-600">Operations:</span>
-                <span className="font-medium">+, -, ×, ÷</span>
+
+            <h3 className="text-lg font-semibold text-gray-900 mb-3 mt-6">How to Use This Calculator</h3>
+            <ul className="text-gray-600 text-sm space-y-2 mb-4">
+              <li>• Enter numbers by clicking the number buttons</li>
+              <li>• Select an operation (+, -, ×, ÷)</li>
+              <li>• Enter the second number</li>
+              <li>• Press = to see your result</li>
+              <li>• Use Clear to start a new calculation</li>
+            </ul>
+
+            <h3 className="text-lg font-semibold text-gray-900 mb-3 mt-6">Key Features</h3>
+            <div className="space-y-2 text-sm text-gray-600">
+              <div className="flex items-start">
+                <span className="font-medium text-gray-900 min-w-32">Operations:</span>
+                <span>Addition, Subtraction, Multiplication, Division</span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-gray-600">Decimals:</span>
-                <span className="font-medium">Supported</span>
+              <div className="flex items-start">
+                <span className="font-medium text-gray-900 min-w-32">Decimal Support:</span>
+                <span>Calculate with decimal numbers</span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-gray-600">Memory:</span>
-                <span className="font-medium">Basic</span>
+              <div className="flex items-start">
+                <span className="font-medium text-gray-900 min-w-32">Display:</span>
+                <span>Shows operation history and current input</span>
+              </div>
+              <div className="flex items-start">
+                <span className="font-medium text-gray-900 min-w-32">Backspace:</span>
+                <span>Delete last digit entered</span>
               </div>
             </div>
+
+            <h3 className="text-lg font-semibold text-gray-900 mb-3 mt-6">Why Use Our Calculator?</h3>
+            <p className="text-gray-600 text-sm leading-relaxed">
+              Our online calculator is completely free, requires no download, and works on any device.
+              Whether you're doing homework, balancing your budget, or splitting a bill, this calculator
+              provides instant, accurate results. No ads interrupting your calculations, just a clean,
+              easy-to-use interface.
+            </p>
           </div>
 
           <div className="bg-blue-50 rounded-2xl p-6">
-            <h3 className="text-lg font-semibold text-blue-900 mb-3">Pro Tip</h3>
+            <h3 className="text-lg font-semibold text-blue-900 mb-3">Need More Functions?</h3>
             <p className="text-blue-800 text-sm leading-relaxed">
-              For more advanced calculations like scientific functions, logarithms, 
-              and trigonometry, try our Scientific Calculator.
+              For advanced calculations including scientific functions, trigonometry, logarithms,
+              and exponents, try our Scientific Calculator with extended functionality.
             </p>
-            <Link 
+            <Link
               to="/scientific-calculator"
               className="inline-block mt-3 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
             >
