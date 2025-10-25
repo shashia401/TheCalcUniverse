@@ -123,45 +123,44 @@ const BasicCalculator: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         {/* Related Calculators Sidebar */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
-              <Calculator className="w-5 h-5 mr-2 text-blue-600" />
-              Try Our Other Calculators
+          <div className="bg-white rounded-2xl shadow-lg p-4 sticky top-6">
+            <h2 className="text-sm font-bold text-gray-900 mb-3 pb-2 border-b border-gray-200">
+              Try Our Calculators
             </h2>
-            <div className="space-y-2">
+            <div className="space-y-1">
               <Link
                 to="/scientific-calculator"
-                className="block p-3 rounded-lg hover:bg-blue-50 transition-colors text-gray-700 hover:text-blue-600 text-sm font-medium"
+                className="block px-3 py-2 rounded-lg hover:bg-blue-50 transition-colors text-gray-700 hover:text-blue-600 text-sm"
               >
                 Scientific Calculator
               </Link>
               <Link
                 to="/fraction-calculator"
-                className="block p-3 rounded-lg hover:bg-blue-50 transition-colors text-gray-700 hover:text-blue-600 text-sm font-medium"
+                className="block px-3 py-2 rounded-lg hover:bg-blue-50 transition-colors text-gray-700 hover:text-blue-600 text-sm"
               >
                 Fraction Calculator
               </Link>
               <Link
                 to="/percentage-calculator"
-                className="block p-3 rounded-lg hover:bg-blue-50 transition-colors text-gray-700 hover:text-blue-600 text-sm font-medium"
+                className="block px-3 py-2 rounded-lg hover:bg-blue-50 transition-colors text-gray-700 hover:text-blue-600 text-sm"
               >
                 Percentage Calculator
               </Link>
               <Link
                 to="/average-calculator"
-                className="block p-3 rounded-lg hover:bg-blue-50 transition-colors text-gray-700 hover:text-blue-600 text-sm font-medium"
+                className="block px-3 py-2 rounded-lg hover:bg-blue-50 transition-colors text-gray-700 hover:text-blue-600 text-sm"
               >
                 Average Calculator
               </Link>
               <Link
                 to="/ratio-calculator"
-                className="block p-3 rounded-lg hover:bg-blue-50 transition-colors text-gray-700 hover:text-blue-600 text-sm font-medium"
+                className="block px-3 py-2 rounded-lg hover:bg-blue-50 transition-colors text-gray-700 hover:text-blue-600 text-sm"
               >
                 Ratio Calculator
               </Link>
               <Link
                 to="/proportion-calculator"
-                className="block p-3 rounded-lg hover:bg-blue-50 transition-colors text-gray-700 hover:text-blue-600 text-sm font-medium"
+                className="block px-3 py-2 rounded-lg hover:bg-blue-50 transition-colors text-gray-700 hover:text-blue-600 text-sm"
               >
                 Proportion Calculator
               </Link>
