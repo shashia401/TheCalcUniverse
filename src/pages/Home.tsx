@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   Calculator,
@@ -21,6 +21,7 @@ import {
   Binary,
   Shuffle
 } from 'lucide-react';
+import SearchBar from '../components/SearchBar';
 
 const Home: React.FC = () => {
   const calculatorCategories = [
@@ -105,54 +106,10 @@ const Home: React.FC = () => {
     { name: 'Unit Converter', path: '/unit-converter', icon: Zap, users: '1.2M', color: 'from-purple-500 to-purple-600' },
   ];
 
-  // Search state and logic
-  const [search, setSearch] = useState('');
-  const [showSuggestions, setShowSuggestions] = useState(false);
-
-  const allCalculators = calculatorCategories.flatMap(cat =>
-    cat.calculators.map(calc => ({
-      ...calc,
-      category: cat.title
-    }))
-  );
-
-  const filtered = search
-    ? allCalculators.filter(calc =>
-      calc.name.toLowerCase().includes(search.toLowerCase())
-    )
-    : [];
-
   return (
     <div className="space-y-12">
-      {/* Search Box */}
-      <div className="flex justify-center mb-8 relative">
-        <input
-          type="text"
-          className="w-full max-w-md px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-          placeholder="Search calculators..."
-          value={search}
-          onChange={e => {
-            setSearch(e.target.value);
-            setShowSuggestions(true);
-          }}
-          onBlur={() => setTimeout(() => setShowSuggestions(false), 100)}
-          onFocus={() => setShowSuggestions(true)}
-        />
-        {showSuggestions && filtered.length > 0 && (
-          <div className="absolute top-full left-0 w-full max-w-md bg-white border border-gray-200 rounded-lg shadow-lg z-10 mt-1">
-            {filtered.slice(0, 8).map(calc => (
-              <Link
-                key={calc.name}
-                to={calc.path}
-                className="block px-4 py-2 hover:bg-blue-50 text-gray-900"
-                onClick={() => setShowSuggestions(false)}
-              >
-                <span className="font-medium">{calc.name}</span>
-                <span className="text-xs text-gray-500 ml-2">{calc.category}</span>
-              </Link>
-            ))}
-          </div>
-        )}
+      <div className="max-w-2xl mx-auto">
+        <SearchBar className="w-full" placeholder="Search calculators..." />
       </div>
 
       {/* Hero Section */}
