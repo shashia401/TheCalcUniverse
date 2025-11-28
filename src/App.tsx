@@ -131,10 +131,21 @@ import HalfLifeCalculator from './pages/calculators/math_calculators/specialized
 // ===========================================================================================
 import MortgageCalculator from './pages/calculators/financial_calculators/MortgageCalculator';
 import LoanCalculator from './pages/calculators/financial_calculators/LoanCalculator';
+import AutoLoanCalculator from './pages/calculators/financial_calculators/AutoLoanCalculator';
+import InterestCalculator from './pages/calculators/financial_calculators/InterestCalculator';
 import InvestmentCalculator from './pages/calculators/financial_calculators/InvestmentCalculator';
 import CompoundInterestCalculator from './pages/calculators/financial_calculators/CompoundInterestCalculator';
+import SIPCalculator from './pages/calculators/financial_calculators/SIPCalculator';
+import SWPCalculator from './pages/calculators/financial_calculators/SWPCalculator';
+import PaymentCalculator from './pages/calculators/financial_calculators/PaymentCalculator';
+import AmortizationCalculator from './pages/calculators/financial_calculators/AmortizationCalculator';
 import RetirementCalculators from './pages/calculators/financial_calculators/RetirementCalculator';
+import InflationCalculator from './pages/calculators/financial_calculators/InflationCalculator';
+import IncomeTaxCalculator from './pages/calculators/financial_calculators/IncomeTaxCalculator';
 import TaxCalculator from './pages/calculators/financial_calculators/TaxCalculator';
+import SalesTaxCalculator from './pages/calculators/financial_calculators/SalesTaxCalculator';
+import SalaryCalculator from './pages/calculators/financial_calculators/SalaryCalculator';
+import InterestRateCalculator from './pages/calculators/financial_calculators/InterestRateCalculator';
 import TipCalculator from './pages/calculators/financial_calculators/TipCalculator';
 import CurrencyConverter from './pages/calculators/financial_calculators/CurrencyConverter';
 
@@ -299,10 +310,21 @@ function App() {
             <Route path="/financial" element={<Financial />} />
             <Route path="/mortgage-calculator" element={<MortgageCalculator />} />
             <Route path="/loan-calculator" element={<LoanCalculator />} />
-            <Route path="/investment-calculator" element={<InvestmentCalculator />} />
+            <Route path="/auto-loan-calculator" element={<AutoLoanCalculator />} />
+            <Route path="/interest-calculator" element={<InterestCalculator />} />
             <Route path="/compound-interest-calculator" element={<CompoundInterestCalculator />} />
+            <Route path="/investment-calculator" element={<InvestmentCalculator />} />
+            <Route path="/sip-calculator" element={<SIPCalculator />} />
+            <Route path="/swp-calculator" element={<SWPCalculator />} />
+            <Route path="/payment-calculator" element={<PaymentCalculator />} />
+            <Route path="/amortization-calculator" element={<AmortizationCalculator />} />
             <Route path="/retirement-calculator" element={<RetirementCalculators />} />
+            <Route path="/inflation-calculator" element={<InflationCalculator />} />
+            <Route path="/income-tax-calculator" element={<IncomeTaxCalculator />} />
             <Route path="/tax-calculator" element={<TaxCalculator />} />
+            <Route path="/sales-tax-calculator" element={<SalesTaxCalculator />} />
+            <Route path="/salary-calculator" element={<SalaryCalculator />} />
+            <Route path="/interest-rate-calculator" element={<InterestRateCalculator />} />
             <Route path="/tip-calculator" element={<TipCalculator />} />
             <Route path="/currency-converter" element={<CurrencyConverter />} />
 
