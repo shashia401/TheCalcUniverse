@@ -3,34 +3,60 @@ import { Link } from 'react-router-dom';
 import { Home, ChevronRight, TrendingUp, DollarSign, Calendar } from 'lucide-react';
 
 const SIPCalculator: React.FC = () => {
+  const [investmentType, setInvestmentType] = useState<'monthly' | 'lumpsum'>('monthly');
   const [monthlyInvestment, setMonthlyInvestment] = useState('5000');
+  const [lumpsumAmount, setLumpsumAmount] = useState('100000');
   const [expectedReturn, setExpectedReturn] = useState('12');
   const [timePeriod, setTimePeriod] = useState('10');
   const [results, setResults] = useState<any>(null);
 
   useEffect(() => {
     calculateSIP();
-  }, [monthlyInvestment, expectedReturn, timePeriod]);
+  }, [investmentType, monthlyInvestment, lumpsumAmount, expectedReturn, timePeriod]);
 
   const calculateSIP = () => {
-    const monthly = parseFloat(monthlyInvestment);
     const rate = parseFloat(expectedReturn) / 100 / 12;
     const months = parseFloat(timePeriod) * 12;
 
-    if (isNaN(monthly) || isNaN(rate) || isNaN(months) || monthly <= 0 || months <= 0) {
+    if (isNaN(rate) || isNaN(months) || months <= 0) {
       setResults(null);
       return;
     }
 
-    const futureValue = monthly * (((Math.pow(1 + rate, months) - 1) / rate) * (1 + rate));
-    const totalInvestment = monthly * months;
-    const totalReturns = futureValue - totalInvestment;
+    if (investmentType === 'monthly') {
+      const monthly = parseFloat(monthlyInvestment);
 
-    setResults({
-      futureValue: futureValue.toFixed(2),
-      totalInvestment: totalInvestment.toFixed(2),
-      totalReturns: totalReturns.toFixed(2),
-    });
+      if (isNaN(monthly) || monthly <= 0) {
+        setResults(null);
+        return;
+      }
+
+      const futureValue = monthly * (((Math.pow(1 + rate, months) - 1) / rate) * (1 + rate));
+      const totalInvestment = monthly * months;
+      const totalReturns = futureValue - totalInvestment;
+
+      setResults({
+        futureValue: futureValue.toFixed(2),
+        totalInvestment: totalInvestment.toFixed(2),
+        totalReturns: totalReturns.toFixed(2),
+      });
+    } else {
+      const lumpsum = parseFloat(lumpsumAmount);
+
+      if (isNaN(lumpsum) || lumpsum <= 0) {
+        setResults(null);
+        return;
+      }
+
+      const futureValue = lumpsum * Math.pow(1 + rate, months);
+      const totalReturns = futureValue - lumpsum;
+
+      setResults({
+        futureValue: futureValue.toFixed(2),
+        totalInvestment: lumpsum.toFixed(2),
+        totalReturns: totalReturns.toFixed(2),
+      });
+    }
   };
 
   return (
@@ -63,19 +89,65 @@ const SIPCalculator: React.FC = () => {
           <div className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Monthly Investment (₹)
+                Investment Type
               </label>
-              <div className="relative">
-                <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type="number"
-                  value={monthlyInvestment}
-                  onChange={(e) => setMonthlyInvestment(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                  placeholder="5000"
-                />
+              <div className="grid grid-cols-2 gap-4">
+                <button
+                  onClick={() => setInvestmentType('monthly')}
+                  className={`py-3 px-4 rounded-lg font-medium transition-all ${
+                    investmentType === 'monthly'
+                      ? 'bg-green-600 text-white shadow-md'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  Monthly SIP
+                </button>
+                <button
+                  onClick={() => setInvestmentType('lumpsum')}
+                  className={`py-3 px-4 rounded-lg font-medium transition-all ${
+                    investmentType === 'lumpsum'
+                      ? 'bg-green-600 text-white shadow-md'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  Lumpsum
+                </button>
               </div>
             </div>
+
+            {investmentType === 'monthly' ? (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Monthly Investment (₹)
+                </label>
+                <div className="relative">
+                  <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <input
+                    type="number"
+                    value={monthlyInvestment}
+                    onChange={(e) => setMonthlyInvestment(e.target.value)}
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    placeholder="5000"
+                  />
+                </div>
+              </div>
+            ) : (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Lumpsum Amount (₹)
+                </label>
+                <div className="relative">
+                  <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <input
+                    type="number"
+                    value={lumpsumAmount}
+                    onChange={(e) => setLumpsumAmount(e.target.value)}
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    placeholder="100000"
+                  />
+                </div>
+              </div>
+            )}
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -144,22 +216,29 @@ const SIPCalculator: React.FC = () => {
         <h2 className="text-xl font-semibold text-gray-900 mb-4">About SIP Calculator</h2>
         <div className="prose prose-blue max-w-none text-gray-700 space-y-3">
           <p>
-            A Systematic Investment Plan (SIP) is a method of investing in mutual funds where you invest a fixed amount regularly (monthly, quarterly, etc.).
+            This calculator supports both Monthly SIP and Lumpsum investment calculations.
           </p>
           <p>
-            <strong>Benefits of SIP:</strong>
+            <strong>Monthly SIP:</strong> A Systematic Investment Plan where you invest a fixed amount regularly every month.
           </p>
           <ul className="list-disc list-inside space-y-1 ml-4">
             <li>Rupee cost averaging - reduces market timing risk</li>
             <li>Power of compounding over long term</li>
             <li>Disciplined approach to investing</li>
-            <li>Flexible investment amounts</li>
+            <li>Lower initial investment requirement</li>
           </ul>
           <p>
-            <strong>Formula:</strong> FV = P × ((1 + r)^n - 1) / r × (1 + r)
+            <strong>Lumpsum:</strong> One-time investment of a large amount that grows over time.
           </p>
+          <ul className="list-disc list-inside space-y-1 ml-4">
+            <li>Immediate exposure to market growth</li>
+            <li>Simple and straightforward investment</li>
+            <li>Ideal when you have surplus funds</li>
+          </ul>
           <p className="text-sm">
-            Where P = Monthly investment, r = Monthly rate of return, n = Number of months
+            <strong>Monthly SIP Formula:</strong> FV = P × ((1 + r)^n - 1) / r × (1 + r)<br/>
+            <strong>Lumpsum Formula:</strong> FV = P × (1 + r)^n<br/>
+            Where P = Investment, r = Monthly rate of return, n = Number of months
           </p>
         </div>
       </div>
